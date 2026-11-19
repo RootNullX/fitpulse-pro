@@ -1,7 +1,32 @@
+
+# Environment secrets
 .env
+.env.*
+!.env.example
+
+# Telegram sessions
 *.session
 *.session-journal
+
+# Database and backups
 *.db
-.venv/
+*.db-journal
+*.sqlite
+*.sqlite3
+backups/
+
+# Python
 __pycache__/
 *.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
