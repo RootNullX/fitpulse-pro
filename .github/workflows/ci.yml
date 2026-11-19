@@ -12,15 +12,30 @@ permissions:
 
 jobs:
   validation:
-    name: Repository Validation
+    name: Python validation
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Validate workflow
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
         run: |
-          echo "FitPulse Pro"
-          echo "Workflow is running successfully!"
-          echo "Validation completed."
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile Python files
+        run: python -m compileall -q bot.py
+
+      - name: Check required project files
+        run: |
+          test -f bot.py
+          test -f requirements.txt
+          test -f .env.example
+          echo "FitPulse Pro validation passed."
