@@ -1,14 +1,25 @@
+
 [Unit]
-Description=FitPulse Telegram News Bot
-After=network.target
+Description=FitPulse Pro Telegram Intelligence Bot
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
+User=fitpulse
+Group=fitpulse
 WorkingDirectory=/opt/fitpulse
-ExecStart=/opt/fitpulse/.venv/bin/python /opt/fitpulse/bot.py
+EnvironmentFile=/opt/fitpulse/.env
+ExecStart=/opt/fitpulse/.venv/bin/python -u /opt/fitpulse/bot.py
 Restart=always
 RestartSec=10
-User=fitpulse
+TimeoutStopSec=30
+KillSignal=SIGINT
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/fitpulse
 
 [Install]
 WantedBy=multi-user.target
