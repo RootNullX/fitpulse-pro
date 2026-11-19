@@ -1,0 +1,8 @@
+[
+  {"username":"@espn","category":"sports","description":"ESPN sports news; verify the channel identity before use"},
+  {"username":"@SkySports","category":"sports","description":"Sky Sports; verify the channel identity before use"},
+  {"username":"@premierleague","category":"sports","description":"Premier League updates; verify the channel identity before use"},
+  {"username":"@nba","category":"sports","description":"NBA basketball updates; verify the channel identity before use"},
+  {"username":"@drtedros","category":"health","description":"Telegram account of WHO Director-General; use as institutional public-health updates, not individual medical advice"},
+  {"username":"@menshealth","category":"healthy_lifestyle","description":"Men's Health editorial content; verify the channel identity before use"}
+]

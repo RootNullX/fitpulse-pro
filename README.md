@@ -1,65 +1,52 @@
-🏋️ FitPulse Pro
+# FitPulse — ربات گردآوری اخبار تلگرام
 
+این پروژه پیام‌های کانال‌های منبع را جمع‌آوری می‌کند، موارد کوتاه/تکراری را کنار می‌گذارد، موضوع را در سه دسته تشخیص می‌دهد و در ساعت‌های تعیین‌شده یک بولتن فارسی در کانال مقصد منتشر می‌کند.
 
-Your Personal AI-Powered Fitness Companion
+## قابلیت‌ها
+- سه دسته: اخبار ورزشی، سلامت و تغذیه، سبک زندگی سالم
+- جمع‌آوری دوره‌ای از کانال‌های تلگرامی
+- حذف تکرار با شناسه پیام و هش محتوا
+- ترجمه انگلیسی به فارسی و خلاصه‌سازی فارسی با OpenAI (کلید API الزامی)
+- درج لینک پیام اصلی برای کانال‌های عمومی دارای username
+- انتشار خودکار بولتن هر ۶ ساعت (قابل تنظیم)
+- ذخیره وضعیت و مطالب در SQLite
 
+## پیش‌نیازها
+- Python 3.10+
+- حساب تلگرام و API ID / API Hash از `https://my.telegram.org`
+- ربات ساخته‌شده با `@BotFather`
+- کانال مقصد؛ ربات باید در آن Administrator باشد.
+- حساب کاربری اجراکننده باید عضو کانال‌های منبع باشد و اجازه مشاهده پیام‌ها را داشته باشد.
 
-FitPulse Pro is an advanced Telegram fitness and wellness bot designed to help users build healthier habits, improve their fitness, and track their progress.
+## راه‌اندازی
+1. فایل `.env.example` را به `.env` تغییر نام دهید و مقادیر را وارد کنید. در تنظیمات پیش‌فرض، منابع پیشنهادی شامل ESPN، Sky Sports، Premier League، NBA، حساب تلگرامی مدیرکل WHO و Men’s Health هستند؛ قبل از استفاده، هر کانال را در تلگرام بازبینی و در صورت نیاز از فهرست حذف/اضافه کنید. این نام‌ها صرفاً نقطه شروع‌اند و تأیید رسمی همه حساب‌ها از سوی تلگرام تضمین نمی‌شود.
+2. برای ترجمه خودکار انگلیسی به فارسی، مقدار `OPENAI_API_KEY` را وارد کنید؛ بدون آن برنامه اجرا نمی‌شود.
+3. ربات را در کانال مقصد مدیر کنید و حساب تلگرامِ متصل به Telethon را عضو کانال‌های منبع کنید.
+4. نصب وابستگی‌ها:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # ویندوز: .venv\\Scripts\\activate
+   pip install -r requirements.txt
+   ```
+5. اجرا:
+   ```bash
+   python bot.py
+   ```
+6. بار اول، Telethon کد ورود تلگرام و در صورت فعال بودن، رمز دومرحله‌ای را در ترمینال می‌خواهد. فایل session را محرمانه نگه دارید.
 
+## منابع پیشنهادی اولیه
+- `@espn` — اخبار ورزشی
+- `@SkySports` — اخبار ورزشی
+- `@premierleague` — لیگ برتر انگلیس
+- `@nba` — بسکتبال NBA
+- `@drtedros` — پیام‌های مدیرکل سازمان جهانی بهداشت؛ برای اخبار عمومی سلامت، نه جایگزین منابع پزشکی مستقل
+- `@menshealth` — سلامت و سبک زندگی
 
-✨ Features
+دسترسی، فعالیت و اصالت هر username ممکن است تغییر کند. پیش از فعال‌سازی، صفحه واقعی کانال و اعتبار ناشر را بررسی کنید.
 
-
-
-
-💪 Personalized fitness guidance
-
-
-🥗 Nutrition and wellness assistance
-
-
-📊 Fitness progress tracking
-
-
-🎯 Goal-oriented fitness planning
-
-
-🤖 Telegram-based user experience
-
-
-
-
-🚀 Vision
-
-
-Our mission is to make fitness guidance more accessible, intelligent, and engaging for everyone.
-
-
-🛠️ Technology
-
-
-Technology stack and installation instructions will be documented as development progresses.
-
-
-📦 Installation
-
-
-Installation instructions will be added after the source code and dependencies are published.
-
-
-🤝 Contributing
-
-
-Contributions, ideas, and suggestions are welcome.
-
-
-📄 License
-
-
-License information will be added in a future release.
-
-
-
-FitPulse Pro — Build Strength. Build Health. Build Your Future.
-
-
+## نکات مهم
+- Bot API به‌تنهایی نمی‌تواند پیام‌های همه کانال‌های دلخواه را بخواند. این پروژه از نشست حساب کاربری Telethon برای خواندن کانال‌هایی استفاده می‌کند که آن حساب به آن‌ها دسترسی دارد؛ انتشار با Bot API انجام می‌شود.
+- فقط منابعی را اضافه کنید که اجازه دسترسی و بازنشر/خلاصه‌سازی محتوایشان را دارید. متن کامل دیگران را بدون اجازه بازنشر نکنید؛ این پروژه برای خلاصه‌سازی و ارجاع به منبع طراحی شده است.
+- مطالب سلامت، تشخیص یا توصیه پزشکی شخصی نیستند؛ خلاصه‌ها باید با منبع اصلی بررسی شوند. در کانال نهایی، خبرهای پزشکی حساس بهتر است فقط از منابع علمی/سازمانی معتبر منتشر شوند و محتوای تبلیغاتی یا ادعاهای درمانی تأییدنشده کنار گذاشته شود.
+- فایل `.env`، فایل `fitpulse_user.session` و پایگاه داده را عمومی یا در مخزن Git قرار ندهید.
+- برای اجرای ۲۴ساعته، پروژه را روی VPS یا سرور همیشه روشن اجرا کنید. نمونه سرویس systemd در `deploy/fitpulse.service` قرار دارد.
